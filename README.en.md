@@ -119,6 +119,16 @@ Note that sleep should usually be disabled when the power adapter is disabled, a
 * Based on IOPowerManagement events to minimize resource usage, especially when not connected to power
 * Support for macOS Ventura daemons and login items for a more reliable experience
 
+## Local Packaging
+
+If you are developing from your own fork on your own Mac, you can use the local packaging script included in this repository:
+
+```bash
+./scripts/local_release.sh
+```
+
+The script injects your local signing settings only into a temporary working copy before building, so your personal signing configuration never gets written back into the repository. The temporary directory is removed automatically when the script exits, while the generated artifacts are written to `build/`.
+
 ## Security
 * Privileged operations are authenticated by the daemon
 * Privileged daemon exposes only a minimal protocol via XPC
