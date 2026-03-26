@@ -36,6 +36,7 @@ public enum GlobalSleep {
         self.setSleepDisabledIOPMValue(value: value as CFBoolean)
 
         UserDefaults.standard.removeObject(forKey: self.previousSleepDisabledKey)
+        self.syncDefaults()
     }
 
     static func forceRestore() {
@@ -73,6 +74,7 @@ public enum GlobalSleep {
             sleepDisable,
             forKey: self.previousSleepDisabledKey
         )
+        self.syncDefaults()
 
         guard !sleepDisable else {
             return
@@ -114,13 +116,20 @@ public enum GlobalSleep {
     }
 
     private static func restorePrevious() {
-        guard !self.previousDisabled else {
+        if self.previousDisabled {
             self.previousDisabled = false
+            UserDefaults.standard.removeObject(forKey: self.previousSleepDisabledKey)
+            self.syncDefaults()
             return
         }
 
         self.setSleepDisabledIOPMValue(value: kCFBooleanFalse)
 
         UserDefaults.standard.removeObject(forKey: self.previousSleepDisabledKey)
+        self.syncDefaults()
+    }
+
+    private static func syncDefaults() {
+        _ = CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication)
     }
 }

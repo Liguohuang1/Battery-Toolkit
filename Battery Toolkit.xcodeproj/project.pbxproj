@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0010002D00000100000001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF0010002D00000100000003 /* Localizable.strings */; };
 		CE01E25928E8BF6B00EFDDD6 /* AutostartHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01E25828E8BF6B00EFDDD6 /* AutostartHelper.swift */; };
 		CE01E25B28E8C01E00EFDDD6 /* AutostartHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE9BD24628E8908000B6C61D /* AutostartHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE0DB56328BEB4E600B8FC4C /* BTSettingsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DB56228BEB4E600B8FC4C /* BTSettingsInfo.swift */; };
@@ -162,6 +163,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF0010002D00000100000002 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = zh-Hans.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CF0010002D00000100000004 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = zh-Hans.lproj/Settings.strings; sourceTree = "<group>"; };
+		CF0010002D00000100000005 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = zh-Hans.lproj/Main.strings; sourceTree = "<group>"; };
+		CF0010002D00000100000006 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = zh-Hans.lproj/Upgrading.strings; sourceTree = "<group>"; };
 		CE00654428A989DD0049B17D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		CE00654628A989EB0049B17D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CE01E25728E8BF6B00EFDDD6 /* AutostartHelper.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AutostartHelper.entitlements; sourceTree = "<group>"; };
@@ -359,6 +364,7 @@
 				CE39746D285A229F002D0EC9 /* BTActions.swift */,
 				CE6B760628BC1ABC008DF170 /* BTAppXPCClient.swift */,
 				CE397477285A25A1002D0EC9 /* BTDaemonXPCClient.swift */,
+				CF0010002D00000100000003 /* Localizable.strings */,
 				CE1F5E3B28D760D400F61F67 /* BTLocalization.swift */,
 				CE2322D328E5EB8B00874CDE /* BTLoginItem.swift */,
 			);
@@ -655,6 +661,7 @@
 				en,
 				Base,
 				de,
+				zh-Hans,
 			);
 			mainGroup = CE52866A28298B6D00860C7B;
 			productRefGroup = CE52866A28298B6D00860C7B;
@@ -675,6 +682,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF0010002D00000100000001 /* Localizable.strings in Resources */,
 				CE1F5E3E28D76C6D00F61F67 /* Settings.storyboard in Resources */,
 				CE3179F128DC729900E9C121 /* Upgrading.storyboard in Resources */,
 				CE37DD0C283F80960060C43F /* Main.storyboard in Resources */,
@@ -806,10 +814,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CF0010002D00000100000003 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF0010002D00000100000002 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CE1F5E4128D76C6D00F61F67 /* Settings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CE1F5E4028D76C6D00F61F67 /* Base */,
+				CF0010002D00000100000004 /* zh-Hans */,
 			);
 			name = Settings.storyboard;
 			sourceTree = "<group>";
@@ -818,6 +835,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE3179F228DC729900E9C121 /* Base */,
+				CF0010002D00000100000006 /* zh-Hans */,
 			);
 			name = Upgrading.storyboard;
 			sourceTree = "<group>";
@@ -826,6 +844,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE37DD0B283F80960060C43F /* Base */,
+				CF0010002D00000100000005 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -118,16 +118,19 @@ internal final class BTSettingsViewController: NSViewController {
             )
         }
         
-        let settings: [String: NSObject & Sendable] = [
+        var settings: [String: NSObject & Sendable] = [
             BTSettingsInfo.Keys.minCharge: self.minChargeNum,
             BTSettingsInfo.Keys.maxCharge: self.maxChargeNum,
             BTSettingsInfo.Keys.adapterSleep: NSNumber(
                 value: self.adapterSleepSwitch.state == .off
             ),
-            BTSettingsInfo.Keys.magSafeSync: NSNumber(
-                value: self.magSafeSyncSwitch.state == .on
-            ),
         ]
+
+        if self.magSafeSyncSwitch.isEnabled {
+            settings[BTSettingsInfo.Keys.magSafeSync] = NSNumber(
+                value: self.magSafeSyncSwitch.state == .on
+            )
+        }
         //
         // Submit the settings to the daemon only when they changed.
         //

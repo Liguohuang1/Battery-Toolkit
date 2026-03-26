@@ -1,130 +1,134 @@
 <p align="center">
- <img alt="Battery Toolkit logo" src="Resources/LogoCaption.png" width=500 align="center">
+ <img alt="Battery Toolkit 标志" src="Resources/LogoCaption.png" width=500 align="center">
 </p>
 
-<p align="center">Control the platform power state of your Apple Silicon Mac.</p>
+<p align="center">精细控制你的 Apple 芯片 Mac 的供电状态。</p>
 
-<p align="center"><a href="#features">Features</a> &bull; <a href="#install">Install</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#uninstall"> Uninstall </a> &bull;<a href="#limitations"> Limitations </a> &bull; <a href="#technical-details"> Technical Details </a> &bull; <a href="#donate"> Donate </a></p>
+<p align="center"><strong>Language / 语言：</strong> <a href="README.en.md">English</a> &bull; <strong>简体中文</strong></p>
+
+<p align="center"><a href="#功能">功能</a> &bull; <a href="#安装">安装</a> &bull; <a href="#使用">使用</a> &bull; <a href="#卸载">卸载</a> &bull; <a href="#限制">限制</a> &bull; <a href="#技术细节">技术细节</a> &bull; <a href="#捐助">捐助</a></p>
 
 -----
 
-# Features
+# 功能
 
-## Limits battery charge to an upper limit
+## 将电池充电上限限制在指定数值
 
-Modern batteries deteriorate more when always kept at full charge. For this reason, Apple introduced the “Optimized Charging“ feature for all their portable devices, including Macs. However, its limit cannot be changed, and you cannot force charging to be put on hold. Battery Toolkit allows specifying a hard limit past which battery charging will be turned off. For safety reasons, this limit cannot be lower than 50&nbsp;%.
+现代电池如果长期维持满电，老化速度通常会更快。因此，Apple 在包括 Mac 在内的便携设备上加入了“优化电池充电”功能。不过，系统默认的上限无法自定义，也不能手动强制暂停充电。Battery Toolkit 可以让你设置一个硬性上限，超过该值后会关闭电池充电。出于安全考虑，这个上限不能低于 50&nbsp;%。
 
-## Allows battery charge to drain to a lower limit
+## 允许电量下降到较低阈值后再恢复充电
 
-Even when connected to power, your Mac's battery may slowly lose battery charge for various reasons. Short battery charging bursts can further deteriorate batteries. For this reason, Battery Toolkit allows specifying a limit only below which battery charging will be turned on. For safety reasons, this limit cannot be lower than 20&nbsp;%.
+即使电源适配器一直连接着，Mac 的电池电量也可能因为各种原因缓慢下降。过于频繁的短时补电同样会加速电池老化。因此，Battery Toolkit 也支持设置一个下限：只有当电量低于该值时，才重新开启充电。出于安全考虑，这个下限不能低于 20&nbsp;%。
 
-**Note:** This setting is not honoured for cold boots or reboots, because Apple Silicon Macs reset their platform state in these cases. As battery charging will already be ongoing when Battery Toolkit starts, it lets charging proceed to the upper limit to not cause further short bursts across reboots.
+**注意：** 冷启动或重启后，这个设置不会立即生效，因为 Apple 芯片 Mac 在这些情况下会重置平台状态。此时 Battery Toolkit 启动时，充电往往已经在进行中；为了避免跨重启产生更多短时补电，它会让充电先继续进行到上限。
 
-## Allows you to disable the power adapter
+## 允许你停用电源适配器
 
-If you want to discharge the battery of your Mac, e.g., to recalibrate it, you can turn off the power adapter without actually unplugging it. You can also have Battery Toolkit disable sleeping when the power adapter is disabled.
+如果你想主动让电池放电，例如做一次校准，可以在不拔掉充电器的情况下直接停用电源适配器。你也可以选择在电源适配器被停用时，同时阻止 Mac 进入睡眠。
 
-**Note:** Your Mac may go to sleep immediately after enabling the power adapter again. This is a software bug in macOS and cannot easily be worked around.
+**注意：** 重新启用电源适配器后，你的 Mac 可能会立刻进入睡眠。这是 macOS 的软件问题，暂时不容易规避。
 
-|<img alt="Power Settings" src="Resources/PowerSettings.png" width=607>|
-|:--:| 
-| **Fig. 1**. *Power Settings* |
+|<img alt="电源设置" src="Resources/PowerSettings.png" width=607>|
+|:--:|
+| **图 1**. *电源设置* |
 
-## Grants you manual control
+## 提供手动控制能力
 
-The Battery Toolkit "Commands" menu and its menu bar extra allow you to issue various commands related to the power state of your Mac. These include:
-* Enabling and disabling the power adapter
-* Requesting a full charge
-* Requesting a charge to the specified upper limit
-* Stopping charging immediately
-* Pausing all background activity
+Battery Toolkit 的“命令”菜单以及菜单栏图标支持你直接发出多种与供电状态相关的命令，包括：
+* 启用或停用电源适配器
+* 请求充满电
+* 请求充到设定的上限
+* 立即停止充电
+* 暂停所有后台活动
 
-|<img alt="Menu Bar Extra" src="Resources/MenuBarExtra.png" width=283>|
+|<img alt="菜单栏图标" src="Resources/MenuBarExtra.png" width=283>|
 |:----------|
-| **Fig. 2**. *Menu Bar Extra* |
+| **图 2**. *菜单栏图标* |
 
-# Install
-
-> [!IMPORTANT]
-> Battery Toolkit currently only supports Apple Silicon Macs [#15](https://github.com/mhaeuser/Battery-Toolkit/issues/15)
-
-### Manual Install
-1. Go to the GitHub [releases](https://github.com/mhaeuser/Battery-Toolkit/releases/latest) page
-2. Download the latest non-dSYM build (i.e., `Battery-Toolkit-X.Y.zip`)
-3. Unzip the archive
-4. Drag `Battery Toolkit.app` into your Applications folder
-
-### Install via Homebrew :beer:
-1. Install [Homebrew](https://brew.sh) if you haven't already
-2. Open Terminal and run `brew tap mhaeuser/mhaeuser`
-3. Run `brew install battery-toolkit`
-
-You may want to add the `--no-quarantine` flag onto the end of the install command to bypass Gatekeeper more conveniently, but beware the potential security risks of doing so.
-
-Otherwise, follow the steps mentioned below.
-
-### Opening the App
+# 安装
 
 > [!IMPORTANT]
-> This step is necessary, because the app has not been notarized by Apple due to the membership fees of the Apple Developer Program. "Apple could not verify 'Battery Toolkit.app' is free of malware" refers to the [lack of notarizaion](https://support.apple.com/en-us/102445), not to any anomalies detected.
+> Battery Toolkit 目前仅支持 Apple Silicon Mac [#15](https://github.com/mhaeuser/Battery-Toolkit/issues/15)
 
-On macOS 14 Sonoma or below:
-1. Right click `Battery Toolkit.app`
-2. Click "Open"
-3. Click "Open" in the dialog box
+### 手动安装
+1. 打开 GitHub 的[发布页面](https://github.com/mhaeuser/Battery-Toolkit/releases/latest)
+2. 下载最新的不带 dSYM 的发行包（例如 `Battery-Toolkit-X.Y.zip`）
+3. 解压压缩包
+4. 将 `Battery Toolkit.app` 拖到“应用程序”文件夹中
 
-On macOS 15 Sequoia or above:
-1. Try to open the app, it will tell you it's blocked
-2. Go to `System Settings > Privacy & Security` and scroll to the bottom
-3. Click "Open Anyway" to allow Battery Toolkit to open
-4. Click "Open Anyway" on the next dialog box and authenticate
-5. Open Battery Toolkit again from Applications folder
+### 通过 Homebrew 安装 :beer:
+1. 如果你还没有安装 [Homebrew](https://brew.sh)，请先安装
+2. 打开终端并运行 `brew tap mhaeuser/mhaeuser`
+3. 运行 `brew install battery-toolkit`
 
-# Usage
+如果你想更方便地绕过 Gatekeeper，也可以在安装命令后加上 `--no-quarantine`，但请务必了解其中的安全风险。
+
+否则，请继续按下面的步骤操作。
+
+### 首次打开应用
+
+> [!IMPORTANT]
+> 这一步是必须的，因为该应用尚未经过 Apple 公证。原因并不是应用存在恶意行为，而是作者没有加入 Apple Developer Program 并支付相应费用。因此，系统提示“Apple could not verify 'Battery Toolkit.app' is free of malware”时，表达的是“未经过公证”，并不代表系统检测到了异常。可参考 Apple 关于[公证说明](https://support.apple.com/en-us/102445)的文档。
+
+在 macOS 14 Sonoma 及更低版本上：
+1. 右键点击 `Battery Toolkit.app`
+2. 选择“打开”
+3. 在弹窗中再次点击“打开”
+
+在 macOS 15 Sequoia 及更高版本上：
+1. 先尝试打开应用，系统会提示已被阻止
+2. 前往 `系统设置 > 隐私与安全性`，滚动到页面底部
+3. 点击“仍要打开”（Open Anyway）以允许 Battery Toolkit
+4. 在下一步弹窗中再次选择“仍要打开”，并完成身份验证
+5. 之后再从“应用程序”文件夹中打开 Battery Toolkit
+
+# 使用
 
 > [!CAUTION]
-> To ensure there is no chance of interference, please turn “Optimized Charging” **off** when Battery Toolkit is in use. <br>
->  Go to macOS System Settings > Battery > the (i) next to Battery Health > Optimized Battery Charging > toggle off
+> 为了避免任何干扰，使用 Battery Toolkit 时，请务必关闭“优化电池充电”（Optimized Battery Charging）。<br>
+> 路径：macOS `系统设置 > 电池 > 电池健康旁边的 (i) > 优化电池充电 > 关闭`
 
-1. Open Battery Toolkit from your Applications folder
-2. The menu bar will change to show the app menus, and a menu bar extra will should be visible
-3. Configure the settings through either method (see **Fig. 2, 3, 4**)
+1. 从“应用程序”文件夹启动 Battery Toolkit
+2. 菜单栏会切换为应用菜单，同时你应该能看到它的菜单栏图标
+3. 可通过这两种入口之一来配置设置（见**图 2、图 3、图 4**）
 
-|<img alt="Menu Bar Main" src="Resources/MenuBarMain.png" width=316>|<img alt="Menu Bar Extra" src="Resources/MenuBarCommands.png" width=248>|
+|<img alt="主菜单" src="Resources/MenuBarMain.png" width=316>|<img alt="命令菜单" src="Resources/MenuBarCommands.png" width=248>|
 |:----------|:----------|
-| **Fig. 3**. *Main Menu* | **Fig. 4**. *Menu Bar Commands* |
+| **图 3**. *主菜单* | **图 4**. *命令菜单* |
 
-If you prefer, you can quit the GUI to hide the menu bar extra and Battery Toolkit will keep running in the background.
-If you want to change any settings, simply re-open the app.
+如果你愿意，也可以退出图形界面来隐藏菜单栏图标，Battery Toolkit 仍会继续在后台运行。
+之后如果想修改设置，重新打开应用即可。
 
-# Uninstall
+# 卸载
 
-1. Focus Battery Toolkit
-2. Open the main Battery Toolkit menu in the menu bar (see **Fig. 3**)
-3. Choose "Disable Background Activity"
-4. Move the app to the Trash and empty it
+1. 切换到 Battery Toolkit
+2. 打开菜单栏中的 Battery Toolkit 主菜单（见**图 3**）
+3. 选择“停用后台活动”
+4. 将应用移到废纸篓，并清空废纸篓
 
-# Limitations
+# 限制
 
-Battery Toolkit disables sleep while it is charging, because it has to actively disable charging once reaching the maximum. Sleep is re-enabled once charging is stopped for any reason, e.g., reaching the maximum charge level, manual cancellation, or unplugging the MacBook.
+Battery Toolkit 在充电过程中会阻止系统进入睡眠，因为它需要持续监测电量，并在达到最大值时主动停止充电。无论是达到上限、手动取消，还是拔掉电源，只要充电停止，睡眠功能就会重新启用。
 
-Apps, including Battery Toolkit, cannot control the charge state when the machine is shut down. If the charger remains plugged in while the Mac is off, the battery will charge to 100&nbsp;%.
+当电脑处于关机状态时，应用（包括 Battery Toolkit）都无法控制充电行为。如果 Mac 关机时充电器仍然连接，电池会继续充到 100&nbsp;%。
 
-Note that sleep should usually be disabled when the power adapter is disabled, as this will exit Clamshell mode and the machine will sleep immediately if the lid is closed. Refer to the toggle in the Settings dialog (see **Fig. 1**).
+另外，当电源适配器被停用时，通常也应一并阻止系统进入睡眠；否则合上上盖后，Clamshell（合盖外接显示器）模式会失效，机器很可能会立刻睡眠。相关开关可在设置面板中找到（见**图 1**）。
 
-# Technical Details
+# 技术细节
 
-* Based on IOPowerManagement events to minimize resource usage, especially when not connected to power
-* Support for macOS Ventura daemons and login items for a more reliable experience
+* 基于 IOPowerManagement 事件实现，尽量降低资源占用，尤其是在未接通外部供电时
+* 支持 macOS Ventura 引入的 daemon 与登录项机制，以获得更稳定的体验
 
-## Security
-* Privileged operations are authenticated by the daemon
-* Privileged daemon exposes only a minimal protocol via XPC
-* XPC communication uses the latest macOS codesign features
+## 安全性
+* 所有特权操作都由守护进程完成鉴权
+* 特权守护进程仅通过 XPC 暴露最小必要接口
+* XPC 通信使用了较新的 macOS 代码签名校验能力
 
-# Credits
-* Icon based on [reference icon by Streamline](https://seekicon.com/free-icon/rechargable-battery_1)
-* README overhauled by [rogue](https://github.com/realrogue)
+# 致谢
+* 图标基于 [Streamline 的参考图标](https://seekicon.com/free-icon/rechargable-battery_1)
+* README 由 [rogue](https://github.com/realrogue) 重新整理和润色
 
-# Donate
-For various reasons, I will not accept personal donations. However, if you would like to support my work with the [Kinderschutzbund Kaiserslautern-Kusel](https://www.kinderschutzbund-kaiserslautern.de/) child protection association, you may donate [here](https://www.kinderschutzbund-kaiserslautern.de/helfen-sie-mit/spenden/).
+# 捐助
+
+出于多方面考虑，我不接受个人捐助。
+如果你愿意支持我在德国儿童保护协会 [Kinderschutzbund Kaiserslautern-Kusel](https://www.kinderschutzbund-kaiserslautern.de/) 的相关工作，欢迎通过[这个页面](https://www.kinderschutzbund-kaiserslautern.de/helfen-sie-mit/spenden/)进行捐助。

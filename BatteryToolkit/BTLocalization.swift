@@ -6,6 +6,48 @@
 import Foundation
 
 internal enum BTLocalization {
+    enum Commands {
+        static func chargingToLimit(_ limit: Int) -> String {
+            String.localizedStringWithFormat(
+                NSLocalizedString(
+                    "Charging to %ld %%",
+                    comment: "Status line for charging to a configured upper limit"
+                ),
+                limit
+            )
+        }
+
+        static func requestedChargingToLimit(_ limit: Int) -> String {
+            String.localizedStringWithFormat(
+                NSLocalizedString(
+                    "Requested Charging to %ld %%",
+                    comment: "Status line for a deferred request to charge to a configured upper limit"
+                ),
+                limit
+            )
+        }
+
+        static func chargeToLimitNow(_ limit: Int) -> String {
+            String.localizedStringWithFormat(
+                NSLocalizedString(
+                    "Charge to %ld %% Now",
+                    comment: "Command that immediately charges to a configured upper limit"
+                ),
+                limit
+            )
+        }
+
+        static func requestChargingToLimitNow(_ limit: Int) -> String {
+            String.localizedStringWithFormat(
+                NSLocalizedString(
+                    "Request Charging to %ld %% Now",
+                    comment: "Command that requests charging to a configured upper limit once power is available"
+                ),
+                limit
+            )
+        }
+    }
+
     enum Prompts {
         static let ok = NSLocalizedString(
             "OK",

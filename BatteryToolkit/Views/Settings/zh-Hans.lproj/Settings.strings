@@ -1,0 +1,17 @@
+"iVB-Bu-n4M.label" = "通用";
+"iVB-Bu-n4M.paletteLabel" = "通用";
+"ZWd-cD-Dlp.label" = "电源";
+"ZWd-cD-Dlp.paletteLabel" = "电源";
+"IMi-pw-cwy.label" = "电源";
+"Wuy-t5-ID5.title" = "电池电量高于以下值时停止充电：";
+"YrV-xe-P4m.title" = "电池电量低于以下值时开始充电：";
+"fIe-Jy-1ot.title" = "停用电源适配器时，阻止 Mac 进入睡眠";
+"BOx-qm-k90.title" = "合上 MacBook 上盖后，即使连接了外接显示器且显示器处于开启状态，只要电源适配器被停用，你的 Mac 仍可能会自动进入睡眠。";
+"47S-lH-kMQ.title" = "同步 MagSafe 指示灯";
+"3Kk-Vy-Cgc.title" = "让 MagSafe 指示灯同步显示 Mac 的供电状态。充电时会闪烁琥珀色；暂停充电时会常亮琥珀色；充满后会常亮绿色；停用电源适配器时则熄灭。";
+"1HE-SM-FyJ.title" = "为便于监测电池电量，充电期间系统会阻止你的 Mac 进入睡眠。一旦因任何原因停止充电，睡眠功能会重新启用。";
+"r6x-U7-0zu.label" = "通用";
+"23Z-ec-mgU.title" = "登录 Mac 时自动打开 Battery Toolkit";
+"5XS-zv-zfd.title" = "在菜单栏显示一个图标，方便你快速控制 Mac 的供电状态。后台活动独立于应用本身运行，不受此设置影响。";
+"cnq-Zd-qMS.title" = "确定";
+"dqT-oI-86h.title" = "取消";

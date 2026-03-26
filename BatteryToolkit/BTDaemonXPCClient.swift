@@ -182,7 +182,6 @@ internal enum BTDaemonXPCClient {
     }
 
     static func prepareDisable(authData: Data) async throws {
-        let authData = try await BTAppXPCClient.getManageAuthorization()
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
             self.runExecute(continuation: continuation, authData: authData, command: BTDaemonCommCommand.prepareDisable)
         }
